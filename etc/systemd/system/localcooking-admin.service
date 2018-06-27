@@ -1,0 +1,15 @@
+[Unit]
+Description=Local Cooking Admin
+After=network.target
+
+[Service]
+User=localcooking
+Group=localcooking
+WorkingDirectory=/home/localcooking
+
+ExecStart=/home/localcooking/localcooking-admin/backend/.stack-work/install/x86_64-linux/lts-11.2/8.2.2/bin/localcooking-admin \
+  --host admin.localcooking.com:3001 --public-port 80 --tls --production \
+  --db-host localhost --db-user localcooking_db --db-name localcooking --db-password ""
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,357 @@
+<F28>Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-116-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+74 packages can be updated.
+4 updates are security updates.
+
+
+*** System restart required ***
+You have new mail.
+Last login: Tue Jun 26 22:56:04 2018 from 50.250.143.235
+root@localcooking:~# cat /etc/nginx/sites-enabled/default 
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# https://www.nginx.com/resources/wiki/start/
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+# https://wiki.debian.org/Nginx/DirectoryStructure
+#
+# In most cases, administrators will remove this file from sites-enabled/ and
+# leave it as reference inside of sites-available where it will continue to be
+# updated by the nginx packaging team.
+#
+# This file will automatically load configuration files provided by other
+# applications, such as Drupal or Wordpress. These applications will be made
+# available underneath a path with that package name, such as /drupal8.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
+
+# Default server configuration
+#
+server {
+	server_name localcooking.com www.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/mitch/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+
+
+
+}
+
+server {
+	server_name admin.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/admin/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3001;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+}
+
+server {
+	server_name chef.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/chef/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3002;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+}
+
+server {
+	server_name farm.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/farm/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3003;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+}
+
+server {
+	server_name restaurant.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/restaurant/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3004;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+}
+
+server {
+	server_name content.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/content/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3005;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+# server {
+# 	server_name manage.localcooking.com;
+# 
+# 	location /static/ {
+# 		alias /var/www/html/manage/static/;
+# 		# try_files $uri $uri/ =404;
+# 	}
+# 
+# 	location / {
+# 		# First attempt to serve request as file, then
+# 		# as directory, then fall back to displaying a 404.
+# 		proxy_pass http://127.0.0.1:3006;
+# 		proxy_http_version 1.1;
+# 		proxy_set_header Upgrade $http_upgrade;
+# 		proxy_set_header Connection "Upgrade";
+# 	}
+# 
+# 	# managed by Certbot
+# 	listen 443 ssl; # managed by Certbot
+# 	ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+# 	ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+# 	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+# 	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+# }
+
+server {
+	server_name image.localcooking.com;
+
+	location /static/ {
+		alias /var/www/html/image/static/;
+		# try_files $uri $uri/ =404;
+	}
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		proxy_pass http://127.0.0.1:3007;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection "Upgrade";
+	}
+
+	# managed by Certbot
+	listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+}
+
+
+server {
+    if ($host = www.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = admin.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = chef.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = farm.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = restaurant.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = content.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = manage.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = image.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+	server_name localcooking.com www.localcooking.com admin.localcooking.com chef.localcooking.com farm.localcooking.com restaurant.localcooking.com content.localcooking.com manage.localcooking.com image.localcooking.com;
+    return 404; # managed by Certbot
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/localcooking.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/localcooking.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+
+}
+
+server {
+    if ($host = www.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = admin.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = chef.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = farm.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = restaurant.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = content.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = manage.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    if ($host = image.localcooking.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	server_name localcooking.com www.localcooking.com admin.localcooking.com chef.localcooking.com farm.localcooking.com restaurant.localcooking.com content.localcooking.com manage.localcooking.com image.localcooking.com;
+    return 404; # managed by Certbot
+
+    listen 80; # managed by Certbot
+
+
+}
